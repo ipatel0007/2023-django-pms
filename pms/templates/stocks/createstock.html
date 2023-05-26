@@ -1,7 +1,141 @@
-<form action="" method="post">
-    {% csrf_token %}
+<!-- <form method="post">
+ {% csrf_token %}
     {{form.as_p}}
-    <input type="submit" value="SUBMIT">
+ <input type="submit" value="SUBMIT">
+
+</form> -->
+
+{% load static %}
+<!doctype html>
+<html lang="en" >
+  <head>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>COINEX | Responsive Bootstrap 5 Admin Dashboard Template</title>
+      <!-- Favicon -->
+      <link  href="{% static 'assets/images/favicon.ico'  %}" rel="shortcut icon" />
+      <link  href="{% static 'assets/css/libs.min.css' %}" rel="stylesheet">
+      <link  href="{% static 'assets/css/coinex.css' %}" rel="stylesheet">  </head>
+  <body class="" data-bs-spy="scroll" data-bs-target="#elements-section" data-bs-offset="0" tabindex="0">
+    <!-- loader Start -->
+    <div id="loading">
+      <div class="loader simple-loader">
+          <div class="loader-body"></div>
+      </div>    
+    </div>
+    <!-- loader END -->
+      <!-- <div style="background-image: url('{% static 'assets/images/auth/01.png' %}')" >  -->
+      <div style="background-color:lightseagreen;" />
+         
+        <div class="wrapper">
+<section class="vh-100 bg-image">
+   <div class="container h-100">
+      <div class="row justify-content-center h-100 align-items-center">
+         <div class="col-md-6 mt-5">
+            <div class="card">
+               <div class="card-body">
+                  <div class="auth-form">
+                        <h2 class="text-center mb-4">Stock Details</h2>
+                        <form method="POST">
+                           {% csrf_token %}
+                           
+                           <!-- <div class="row">
+                              <div class="form-floating mb-3">
+                                 {{form.user}}
+                                 
+                              </div>
+                              
+                           </div> -->
+                           <div class="row">
+                              
+                              <div class="col-md-6 mb-4">
+                                 <div class="form-floating mb-3">
+                                    <!-- <select name="portfolio" class="form-select" id="portfolio" aria-label="Portfolio Name">
+                                       <option value= "{{form.portfolio}}" >
+                                          
+                                       </option>
+                                       <label for="portfolio">Portfolio</label> -->
+                                       {{form.portfolio}}
+                                 </div>
+                              </div>
+                              <div class="col-md-6 mb-4">
+                                 <div class="form-floating mb-3">
+                                    <!-- <select name="stocks" class="form-select" id="stocks" aria-label="Stock Name">
+                                       <option value= "{{form.stocks}}" >
+                                          
+                                       </option>
+                                       <label for="stocks">Stock Name</label> -->
+                                       {{form.stocks}}
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="row">
+                           <div class="col-md-6 mb-4">
+                              <div class="form-floating mb-3">
+                                 <input type="number"  name="qty" class="form-control" id="qty" placeholder="quantity">
+                                 <label for="qty">Quantity</label>
+                                   
+                              </div>
+                           </div>
+                              <div class="col-md-6 mb-4">
+                                 <div class="form-floating mb-3">
+                                       <input name="purchaseDate" class="form-control" id="purchaseDate" placeholder="date">
+                                       <label for="purchaseDate">Purchase Date</label>
+                                      
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="row">
+                              <div class="col-md-6 mb-4">
+                                 <div class="form-floating mb-3">
+                                       <input name="investPrice" class="form-control" id="investPrice" placeholder="invest price">
+                                       <label for="investPrice">Purchase Price</label>
+                                       
+                                 </div>
+                              </div>
+                              <div class="col-md-6 mb-4">
+                                 <div class="form-floating mb-3">
+                                       <input name="currentPrice" class="form-control" id="currentPrice" placeholder="current price">
+                                       <label for="currentPrice">Current Price</label>
+                                       
+                                 </div>
+                              </div>
+                              
+                             
+
+                           
+                           <div class="text-center">
+                              <input type="submit" class="btn btn-primary" value="SUBMIT"/>
+                           </div>
+                           
+                    
+                        </form>
+                        
+                     </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+        </div>
+      </div>
+      
+    
+    <!-- Backend Bundle JavaScript -->
+<script src="{% static 'assets/js/libs.min.js' %}"></script>
+    
+<!-- widgetchart JavaScript -->
+<script src="{% static 'assets/js/charts/widgetcharts.js' %}"></script>
+
+<!-- fslightbox JavaScript -->
+<script src="{% static 'assets/js/fslightbox.js' %}"></script>
+
+<!-- app JavaScript -->
+<script src="{% static 'assets/js/app.js' %}"></script>
 
 
-</form>
+<!-- apexchart JavaScript -->
+<script src="{% static 'assets/js/charts/apexcharts.js' %}"></script>
+  </body>
+</html> 

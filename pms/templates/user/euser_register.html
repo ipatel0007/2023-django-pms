@@ -4,11 +4,19 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>COINEX | Responsive Bootstrap 5 Admin Dashboard Template</title>
+      <title>User register page</title>
       <!-- Favicon -->
       <link  href="{% static 'assets/images/favicon.ico'  %}" rel="shortcut icon" />
       <link  href="{% static 'assets/css/libs.min.css' %}" rel="stylesheet">
-      <link  href="{% static 'assets/css/coinex.css' %}" rel="stylesheet">  </head>
+      <link  href="{% static 'assets/css/coinex.css' %}" rel="stylesheet">
+      <!-- <style>
+         .invalid {
+         background-image: url("caution-sign.png");
+         background-repeat: no-repeat;
+         background-position: right center;
+       }  
+      </style> -->
+   </head>
   <body class="" data-bs-spy="scroll" data-bs-target="#elements-section" data-bs-offset="0" tabindex="0">
     <!-- loader Start -->
     <div id="loading">
@@ -17,8 +25,8 @@
       </div>    
     </div>
     <!-- loader END -->
-      <!-- <div style="background-image: url('{% static 'assets/images/auth/01.png' %}')" >  -->
-      <div style="background-color:lightseagreen;" />
+      <div style="background-image: url('{% static 'assets/images/auth/6.png' %}')" > 
+      <!-- <div style="background-image:lightseagreen;" /> -->
          
         <div class="wrapper">
 <section class="vh-100 bg-image">
@@ -29,9 +37,9 @@
                <div class="card-body">
                   <div class="auth-form">
                         <h2 class="text-center mb-4">Sign Up</h2>
-                        <form method="POST">
+                        <form method="POST" id="signup-form">
                            {% csrf_token %}
-                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                           <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> -->
                            <div class="row">
                               <div class="col-md-12 mb-4">
                                   <div class="form-floating mb-3">
@@ -144,6 +152,47 @@
 </section>
         </div>
       </div>
+      <script>
+         document.querySelector('#signup-form').addEventListener('submit', validateForm);
+         
+         function validateForm(event) {
+  event.preventDefault();
+  
+  const usernameInput = document.querySelector('#username');
+  const firstNameInput = document.querySelector('#firstName');
+  const lastNameInput = document.querySelector('#lastName');
+  const emailInput = document.querySelector('#floatingInput');
+  const phoneNoInput = document.querySelector('#phoneno');
+  const password1Input = document.querySelector('#password1');
+  const password2Input = document.querySelector('#password2');
+  const addressInput = document.querySelector('#address');
+  const annualIncomeInput = document.querySelector('#annual_income');
+  
+  let isValid = true;
+  
+  if (!usernameInput.value) {
+    usernameInput.parentNode.classList.add('invalid');
+    isValid = false;
+  } else {
+    usernameInput.parentNode.classList.remove('invalid');
+  }
+  
+  if (!firstNameInput.value) {
+    firstNameInput.parentNode.classList.add('invalid');
+    isValid = false;
+  } else {
+    firstNameInput.parentNode.classList.remove('invalid');
+  }
+  
+  // Repeat the above code for each form field
+  
+  if (isValid) {
+    // Submit the form if all fields are valid
+    event.target.submit();
+  }
+}
+
+       </script>
       
     
     <!-- Backend Bundle JavaScript -->

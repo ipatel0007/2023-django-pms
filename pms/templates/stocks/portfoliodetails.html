@@ -1,0 +1,715 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>User Dashboard</title>
+  <!-- Favicon -->
+  <link href="{% static '/assets/images/favicon.ico' %}" rel="shortcut icon">
+  <link href="{% static '/assets/css/libs.min.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/css/coinex.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0"></script>
+  <!-- <style>
+         #chartdiv {
+           width: 100%;
+           height: 500px;
+         }
+         
+         </style> -->
+  <style>
+    .chart-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 80px;
+    }
+
+    .chart-container canvas {
+      width: 400px;
+      height: 400px;
+    }
+  </style>
+  <!-- Resources -->
+  <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+</head>
+
+<body class=" ">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+  <!-- Resources -->
+  <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+  <!-- loader Start -->
+  <div id="loading">
+    <div class="loader simple-loader">
+      <div class="loader-body"></div>
+    </div>
+  </div>
+  <!-- loader END -->
+  <aside class="sidebar sidebar-default navs-rounded ">
+    <div class="sidebar-header d-flex align-items-center justify-content-start">
+      <a href="/user/euserdash" class="navbar-brand dis-none align-items-center justify-content-center">
+        <!-- <svg width="36" class="text-primary" viewBox="0 0 128 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g>
+            <path
+              d="M117.348 105.33C117.594 105.476 117.669 105.799 117.508 106.036C110.26 116.759 99.5876 125.042 87.0232 129.687C74.2883 134.395 60.2849 135.117 47.0817 131.745C33.8785 128.372 22.1759 121.086 13.7027 110.961C5.22957 100.836 0.43531 88.4101 0.0282348 75.5189C-0.37884 62.6276 3.62286 49.9548 11.4421 39.3726C19.2614 28.7905 30.4835 20.8602 43.4505 16.7536C56.4176 12.6469 70.4417 12.5815 83.4512 16.5672C96.2865 20.4995 107.462 28.1693 115.375 38.4663C115.55 38.6939 115.495 39.0214 115.256 39.1813L97.3742 51.176C97.1539 51.3238 96.8567 51.2735 96.6942 51.0637C91.6372 44.53 84.5205 39.6627 76.3537 37.1606C68.031 34.6109 59.0591 34.6527 50.7636 37.2799C42.468 39.9071 35.2888 44.9804 30.2865 51.7502C25.2842 58.5201 22.7241 66.6274 22.9846 74.8745C23.245 83.1215 26.3121 91.0709 31.7327 97.5482C37.1533 104.025 44.64 108.687 53.0866 110.844C61.5332 113.002 70.4918 112.54 78.6389 109.528C86.6324 106.573 93.4288 101.316 98.0645 94.5111C98.2142 94.2913 98.5086 94.2233 98.7376 94.3583L117.348 105.33Z"
+              fill="#FF971D"></path>
+            <path
+              d="M53.2837 0.5C53.2837 0.223858 53.5075 0 53.7837 0H75.6195C75.8957 0 76.1195 0.223858 76.1195 0.5V26.25H53.2837V0.5Z"
+              fill="#FF971D"></path>
+            <path
+              d="M53.2837 123.75H76.1195V149.5C76.1195 149.776 75.8957 150 75.6195 150H53.7837C53.5075 150 53.2837 149.776 53.2837 149.5V123.75Z"
+              fill="#FF971D"></path>
+          </g>
+        </svg> -->
+        
+        <h4 class="logo-title m-0">Portfolio</h4> <h4 class="logo-title m-0" style="color:orange;">ex</h4>
+      </a>
+      <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
+        <i class="icon">
+          <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.25 12.2744L19.25 12.2744" stroke="currentColor" stroke-width="1.5"></path>
+            <path d="M10.2998 18.2988L4.2498 12.2748L10.2998 6.24976" stroke="currentColor" stroke-width="1.5"></path>
+          </svg>
+        </i>
+      </div>
+    </div>
+    <div class="sidebar-body p-0 data-scrollbar">
+      <div class="collapse navbar-collapse pe-3" id="sidebar">
+        <ul class="navbar-nav iq-main-menu">
+          <li class="nav-item ">
+            <a class="nav-link active" aria-current="page" href="/user/euserdash">
+              <i class="icon">
+                <svg width="22" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M9.15722 20.7714V17.7047C9.1572 16.9246 9.79312 16.2908 10.581 16.2856H13.4671C14.2587 16.2856 14.9005 16.9209 14.9005 17.7047V17.7047V20.7809C14.9003 21.4432 15.4343 21.9845 16.103 22H18.0271C19.9451 22 21.5 20.4607 21.5 18.5618V18.5618V9.83784C21.4898 9.09083 21.1355 8.38935 20.538 7.93303L13.9577 2.6853C12.8049 1.77157 11.1662 1.77157 10.0134 2.6853L3.46203 7.94256C2.86226 8.39702 2.50739 9.09967 2.5 9.84736V18.5618C2.5 20.4607 4.05488 22 5.97291 22H7.89696C8.58235 22 9.13797 21.4499 9.13797 20.7714V20.7714"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </i>
+              <span class="item-name">Dashboard</span>
+            </a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="{% static '#sidebar-user' %}" role="button"
+              aria-expanded="false" aria-controls="sidebar-user">
+              <i class="icon">
+                <svg width="22" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M11.9849 15.3462C8.11731 15.3462 4.81445 15.931 4.81445 18.2729C4.81445 20.6148 8.09636 21.2205 11.9849 21.2205C15.8525 21.2205 19.1545 20.6348 19.1545 18.2938C19.1545 15.9529 15.8735 15.3462 11.9849 15.3462Z"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M11.9849 12.0059C14.523 12.0059 16.5801 9.94779 16.5801 7.40969C16.5801 4.8716 14.523 2.81445 11.9849 2.81445C9.44679 2.81445 7.3887 4.8716 7.3887 7.40969C7.38013 9.93922 9.42394 11.9973 11.9525 12.0059H11.9849Z"
+                    stroke="currentColor" stroke-width="1.42857" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </i> -->
+              <li class="nav-item">
+                <a class="nav-link " href="/user/advisorlist/">
+                    <i class="icon">
+                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                    <path d="M17.8877 10.8967C19.2827 10.7007 20.3567 9.50473 20.3597 8.05573C20.3597 6.62773 19.3187 5.44373 17.9537 5.21973" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path d="M19.7285 14.2505C21.0795 14.4525 22.0225 14.9255 22.0225 15.9005C22.0225 16.5715 21.5785 17.0075 20.8605 17.2815" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.8867 14.6638C8.67273 14.6638 5.92773 15.1508 5.92773 17.0958C5.92773 19.0398 8.65573 19.5408 11.8867 19.5408C15.1007 19.5408 17.8447 19.0588 17.8447 17.1128C17.8447 15.1668 15.1177 14.6638 11.8867 14.6638Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.8869 11.888C13.9959 11.888 15.7059 10.179 15.7059 8.069C15.7059 5.96 13.9959 4.25 11.8869 4.25C9.7779 4.25 8.0679 5.96 8.0679 8.069C8.0599 10.171 9.7569 11.881 11.8589 11.888H11.8869Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path d="M5.88509 10.8967C4.48909 10.7007 3.41609 9.50473 3.41309 8.05573C3.41309 6.62773 4.45409 5.44373 5.81909 5.21973" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path d="M4.044 14.2505C2.693 14.4525 1.75 14.9255 1.75 15.9005C1.75 16.5715 2.194 17.0075 2.912 17.2815" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                </svg>
+                    </i>
+                    <span class="item-name">Advisors</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="{% url 'advise-list' %}">
+                    <i class="icon">
+                        <svg width="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                    
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M19.739 6.15368C19.739 3.40281 17.8583 2.30005 15.1506 2.30005H8.79167C6.16711 2.30005 4.2002 3.32762 4.2002 5.97022V20.694C4.2002 21.4198 4.98115 21.877 5.61373 21.5221L11.9957 17.9422L18.3225 21.5161C18.9561 21.873 19.739 21.4158 19.739 20.689V6.15368Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    
+                        <path d="M8.27148 9.02811H15.5898" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                
+                        </svg>                            
+                    </i>
+                        <span class="item-name">Advised Stocks</span></a>
+            </li>
+              <!-- <span class="item-name">User-Profile</span>
+              <i class="right-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </i>
+            </a>
+            <ul class="sub-nav collapse" id="sidebar-user" data-bs-parent="#sidebar">
+              <li class="nav-item">
+                <a class="nav-link " href="{% static '/dashboard/app/user-profile.html' %}">
+                  <i class="icon">
+                    <svg width="10" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="0.5" y="1" width="11" height="11" stroke="currentcolor" />
+                    </svg>
+                  </i>
+                  <i class="sidenav-mini-icon"> U </i>
+                  <span class="item-name">User Profile</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="{% static '/dashboard/app/user-add.html' %}">
+                  <i class="icon">
+                    <svg width="10" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="0.5" y="1" width="11" height="11" stroke="currentcolor" />
+                    </svg>
+                  </i>
+                  <i class="sidenav-mini-icon"> U </i>
+                  <span class="item-name">User Edit</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="{% static '/dashboard/app/user-list.html' %}">
+                  <i class="icon">
+                    <svg width="10" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="0.5" y="1" width="11" height="11" stroke="currentcolor" />
+                    </svg>
+                  </i>
+                  <i class="sidenav-mini-icon"> U </i>
+                  <span class="item-name">User List</span>
+                </a>
+              </li>
+            </ul>
+          </li> -->
+          <!-- <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="{% static '#sidebar-auth' %}" role="button"
+              aria-expanded="false" aria-controls="sidebar-user">
+              <i class="icon">
+                <svg width="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M11.9846 21.606C11.9846 21.606 19.6566 19.283 19.6566 12.879C19.6566 6.474 19.9346 5.974 19.3196 5.358C18.7036 4.742 12.9906 2.75 11.9846 2.75C10.9786 2.75 5.26557 4.742 4.65057 5.358C4.03457 5.974 4.31257 6.474 4.31257 12.879C4.31257 19.283 11.9846 21.606 11.9846 21.606Z"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M9.38574 11.8746L11.2777 13.7696L15.1757 9.86963" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </i>
+              <span class="item-name">Authentication</span>
+              <i class="right-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </i>
+            </a>
+            <ul class="sub-nav collapse" id="sidebar-auth" data-bs-parent="#sidebar">
+              <li class="nav-item">
+                <a class="nav-link" href="{% static '/dashboard/auth/sign-in.html' %}">
+                  <i class="icon">
+                    <svg width="10" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="0.5" y="1" width="11" height="11" stroke="currentcolor" />
+                    </svg>
+                  </i>
+                  <i class="sidenav-mini-icon"> L </i>
+                  <span class="item-name">Login</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% static '/dashboard/auth/sign-up.html' %}">
+                  <i class="icon">
+                    <svg width="10" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="0.5" y="1" width="11" height="11" stroke="currentcolor" />
+                    </svg>
+                  </i>
+                  <i class="sidenav-mini-icon"> R </i>
+                  <span class="item-name">Register</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% static '/dashboard/auth/confirm-mail.html' %}">
+                  <i class="icon">
+                    <svg width="10" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="0.5" y="1" width="11" height="11" stroke="currentcolor" />
+                    </svg>
+                  </i>
+                  <i class="sidenav-mini-icon"> C </i>
+                  <span class="item-name">Confirm Mail</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% static '/dashboard/auth/lock-screen.html' %}">
+                  <i class="icon">
+                    <svg width="10" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="0.5" y="1" width="11" height="11" stroke="currentcolor" />
+                    </svg>
+                  </i>
+                  <i class="sidenav-mini-icon"> L </i>
+                  <span class="item-name">Lock Screen</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% static '/dashboard/auth/recoverpw.html' %}">
+                  <i class="icon">
+                    <svg width="10" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="0.5" y="1" width="11" height="11" stroke="currentcolor" />
+                    </svg>
+                  </i>
+                  <i class="sidenav-mini-icon"> R </i>
+                  <span class="item-name">Recover password</span>
+                </a>
+              </li>
+            </ul>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link " href="{% static '/dashboard/maps/google.html' %}">
+              <i class="icon">
+                <svg width="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11.2521 7.86011H8.49707" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path d="M15.7161 16.2234H8.49609" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path d="M15.7161 12.0369H8.49609" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M15.909 2.74976C15.909 2.74976 8.23198 2.75376 8.21998 2.75376C5.45998 2.77076 3.75098 4.58676 3.75098 7.35676V16.5528C3.75098 19.3368 5.47298 21.1598 8.25698 21.1598C8.25698 21.1598 15.933 21.1568 15.946 21.1568C18.706 21.1398 20.416 19.3228 20.416 16.5528V7.35676C20.416 4.57276 18.693 2.74976 15.909 2.74976Z"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </i>
+              <span class="item-name">News</span>
+            </a>
+          </li>
+
+      </div>
+  </aside>
+  <main class="main-content">
+    <div class="position-relative">
+      <!--Nav Start-->
+      <nav class="nav navbar navbar-expand-lg navbar-light iq-navbar border-bottom">
+        <div class="container-fluid navbar-inner">
+          <a href="{% static '/dashboard/index.html' %}" class="navbar-brand">
+          </a>
+          <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
+            <i class="icon">
+              <svg width="20px" height="20px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" />
+              </svg>
+            </i>
+          </div>
+          <h4 class="title">
+            Dashboard
+          </h4>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">
+              <span class="navbar-toggler-bar bar1 mt-2"></span>
+              <span class="navbar-toggler-bar bar2"></span>
+              <span class="navbar-toggler-bar bar3"></span>
+            </span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto navbar-list mb-2 mb-lg-0 align-items-center">
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link" id="notification-drop" data-bs-toggle="dropdown">
+                  <svg width="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M12 17.8476C17.6392 17.8476 20.2481 17.1242 20.5 14.2205C20.5 11.3188 18.6812 11.5054 18.6812 7.94511C18.6812 5.16414 16.0452 2 12 2C7.95477 2 5.31885 5.16414 5.31885 7.94511C5.31885 11.5054 3.5 11.3188 3.5 14.2205C3.75295 17.1352 6.36177 17.8476 12 17.8476Z"
+                      stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M14.3889 20.8572C13.0247 22.3719 10.8967 22.3899 9.51953 20.8572" stroke="currentColor"
+                      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                  <span class="bg-danger dots"></span>
+                </a>
+                <div class="sub-drop dropdown-menu iq-noti dropdown-menu-end p-0" aria-labelledby="notification-drop">
+                  <div class="card shadow-none m-0">
+                    <div class="card-header d-flex justify-content-between">
+                      <div class="header-title">
+                        <p class="fs-6 ">New notifications.</p>
+                      </div>
+                      <div class="header-title">
+                        <p class="fs-6">Mark all</p>
+                      </div>
+                    </div>
+                    <div class="card-body p-0">
+                      <a href="#" class="iq-sub-card">
+                        <div class="d-flex">
+                          <img src="{% static '/assets/images/utilities/05.png' %}"
+                            class="img-fluid avatar avatar-30 avatar-rounded" alt="img51">
+                          <div class="ms-3 w-100">
+                            <h6 class="mb-0 ">Successfull transaction og 0.01 BTC</h6>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <p class="mb-0">15 mins ago</p>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                      <a href="#" class="iq-sub-card">
+                        <div class="d-flex align-items-center">
+                          <div class="">
+                            <img src="{% static '/assets/images/utilities/03.png' %}"
+                              class="img-fluid avatar avatar-30 avatar-rounded" alt="img52">
+                          </div>
+                          <div class="ms-3 w-100">
+                            <h6 class="mb-0 ">4 of Pending Transactions!</h6>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <p class="mb-0">30 mins ago</p>
+
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                      <a href="#" class="iq-sub-card">
+                        <div class="d-flex align-items-center">
+                          <img src="{% static '/assets/images/utilities/04.png' %}"
+                            class="img-fluid avatar avatar-30 avatar-rounded" alt="img53">
+                          <div class="ms-3 w-100">
+                            <h6 class="mb-0 ">Cancelled order of 2000 ICO</h6>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <p class="mb-0">55 mins ago</p>
+
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                      <a href="#" class="iq-sub-card">
+                        <div class="d-flex align-items-center">
+                          <img src="{% static '/assets/images/utilities/05.png' %}"
+                            class="img-fluid avatar avatar-30 avatar-rounded" alt="img54">
+                          <div class="w-100 ms-3">
+                            <h6 class="mb-0 ">Great speed notify of 1.34 LTC</h6>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <p class="mb-0">14 Mar</p>
+
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link" id="mail-drop" data-bs-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">
+                  <svg width="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M17.9028 8.85107L13.4596 12.4641C12.6201 13.1301 11.4389 13.1301 10.5994 12.4641L6.11865 8.85107"
+                      stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M16.9089 21C19.9502 21.0084 22 18.5095 22 15.4384V8.57001C22 5.49883 19.9502 3 16.9089 3H7.09114C4.04979 3 2 5.49883 2 8.57001V15.4384C2 18.5095 4.04979 21.0084 7.09114 21H16.9089Z"
+                      stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                  <span class="bg-primary count-mail"></span>
+                </a>
+                <div class="sub-drop dropdown-menu dropdown-menu-end p-0" aria-labelledby="mail-drop">
+                  <div class="card shadow-none m-0">
+                    <div class="card-header d-flex justify-content-between py-3">
+                      <div class="header-title">
+                        <p class="mb-0 text-white">Our Latest News</p>
+                      </div>
+                    </div>
+                    <div class="card-body p-0 ">
+                      <a href="#" class="iq-sub-card">
+                        <div class="d-flex ">
+                          <div class="">
+                            <img src="{% static '/assets/images/coins/02.png' %}"
+                              class="img-fluid avatar avatar-50 avatar-rounded" alt="img55">
+                          </div>
+                          <div class=" w-100 ms-3">
+                            <h6 class="mb-0 ">Bitcoin</h6>
+                            <small class="float-left font-size-12">Lorem Ipsum is simply dummy text of the printing and
+                              typesetting industry. </small>
+                          </div>
+                        </div>
+                      </a>
+                      <a href="#" class="iq-sub-card">
+                        <div class="d-flex">
+                          <div class="">
+                            <img src="{% static '/assets/images/coins/03.png' %}"
+                              class="img-fluid avatar avatar-50 avatar-rounded" alt="img56">
+                          </div>
+                          <div class="ms-3">
+                            <h6 class="mb-0 ">Ethereum</h6>
+                            <small class="float-left font-size-12">Lorem Ipsum is simply dummy text of the printing and
+                              typesetting industry. </small>
+                          </div>
+                        </div>
+                      </a>
+                      <a href="#" class="iq-sub-card">
+                        <div class="d-flex">
+                          <div class="">
+                            <img src="{% static '/assets/images/coins/06.png' %}"
+                              class="img-fluid avatar avatar-50 avatar-rounded" alt="img57">
+                          </div>
+                          <div class="ms-3">
+                            <h6 class="mb-0 ">Litecoin</h6>
+                            <small class="float-left font-size-12">Lorem Ipsum is simply dummy text of the printing and
+                              typesetting industry.</small>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link py-0 d-flex align-items-center" href="#" id="navbarDropdown" role="button"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="{% static '/assets/images/avatars/01.png' %}" alt="User-Profile"
+                    class="img-fluid avatar avatar-50 avatar-rounded">
+                  <div class="caption ms-3 ">
+                    <h6 class="mb-0 caption-title">{{ user.username }}</h6>
+                    <p class="mb-0 caption-sub-title">More</p>
+                  </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                  <li class="border-0"><a class="dropdown-item"
+                      href="{% static '/dashboard/app/user-profile.html' %}">Profile</a></li>
+                  <li class="border-0"><a class="dropdown-item"
+                      href="{% static '/dashboard/app/user-privacy-setting.html' %}">Privacy Setting</a></li>
+                  <li class="border-0">
+                    <hr class="m-0 dropdown-divider">
+                  </li>
+                  <li class="border-0"><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!--Nav End-->
+    </div>
+
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card card-block card-stretch custom-scroll">
+          <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
+
+            <div class="d-flex justify-content-between align-items-center">
+              <h4 class="font-weight-bold">{{portfolioName}}</h4>
+              <a href="{% url 'portfolioupdate' pid%}" class="btn btn-link"><i class="fas fa-edit"></i></a>
+              <!-- <a href="{% url 'portfoliodelete' pid %}" class="btn btn-link"><i class="fas fa-trash"></i></a> -->
+            </div>
+
+
+
+
+
+
+            <form method="get">
+
+              <label for="price_sort" style="color: white;">Sort by current price:</label>
+              <select name="price_sort" id="price_sort" style="background-color: black; color: white;"
+                onchange="this.form.submit()">
+                <option value="">None</option>
+                <option value="asc">Low to high</option>
+                <option value="desc">High to low</option>
+              </select>
+              <!-- <button class="btn btn-secondary" type="submit">Apply</button> -->
+            </form>
+            <div><a href="{% url 'stockscreate' %}" class="btn btn-primary">+ Add Stock</a></div>
+
+
+
+            <table class="table data-table mb-0" id="table-${tableIndex}">
+
+              <thead>
+                <tr>
+                  <th scope="col">Stock Name</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">
+                    Current Price
+                    {% if request.GET.price_sort == 'asc' %}
+                    <i class="fas fa-sort-up"></i>
+                    {% elif request.GET.price_sort == 'desc' %}
+                    <i class="fas fa-sort-down"></i>
+                    {% endif %}
+                  </th>
+                  <th scope="col">Action</th>
+
+
+
+                </tr>
+              </thead>
+
+              <tbody>
+
+
+                {% for i in ups %}
+
+                <tr class="white-space-no-wrap">
+                  <td>
+                    {{ i.stocks }}
+                  </td>
+
+                  <td>
+                    {{i.qty}}
+                  </td>
+
+
+
+
+                  <td>{{i.currentPrice}}</td>
+                  <td>
+                    <a href="{% url 'stocksupdate' i.id %}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                    <a href="{% url 'stocksdelete' i.id %}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+
+                </tr>
+
+                {% endfor %}
+
+
+
+              </tbody>
+
+
+
+            </table>
+
+
+          </div>
+          <div class="card-body">
+
+            <div class="table-responsive">
+
+
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="table-responsive">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between flex-wrap">
+          <div class="header-title">
+            <h4 class="card-title mb-2">Stocks Performance</h4>
+          </div>
+    
+          <div class="row">
+            <div class="col-md-7 mb-4">
+              <canvas id="priceChart"></canvas>
+              <h5 class="text-center mt-2">Price Difference</h5>
+            </div>
+            <div class="col-md-7 mb-4">
+              <canvas id="profitChart"></canvas>
+              <h5 class="text-center mt-2">Profit/Loss</h5>
+            </div>
+          </div>
+    
+          <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0"></script>
+          <script>
+            const priceCtx = document.getElementById('priceChart').getContext('2d');
+            const priceChart = new Chart(priceCtx, {
+              type: 'bar',
+              data: {
+                labels: {{ labels| safe }},
+                datasets: [
+                  {
+                    label: 'Invest Price',
+                    data: {{ data2| safe }},
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                  },
+                  {
+                    label: 'Current Price',
+                    data: {{ data| safe }},
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                  }
+                ]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+    
+            const profitCtx = document.getElementById('profitChart').getContext('2d');
+            const profitChart = new Chart(profitCtx, {
+              type: 'bar',
+              data: {
+                labels: {{ labels| safe }},
+                datasets: [
+                  {
+                    label: 'Profit/Loss',
+                    data: {{ data1| safe }},
+                    backgroundColor: function(context) {
+                      const value = context.dataset.data[context.dataIndex];
+                      return value >= 0 ? 'rgba(75, 192, 192, 0.2)' : 'rgba(255, 99, 132, 0.2)';
+                    },
+                    borderColor: function(context) {
+                      const value = context.dataset.data[context.dataIndex];
+                      return value >= 0 ? 'rgba(75, 192, 192, 1)' : 'rgba(255, 99, 132, 1)';
+                    },
+                    borderWidth: 1
+                  }
+                ]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Wrapper End-->
+    <!-- offcanvas start -->
+    <script>
+      const portfolioCreateBtn = document.querySelector('#portfolio-create-btn');
+      const portfolioSection = document.querySelector('#portfolio-section');
+
+      portfolioCreateBtn.addEventListener('click', () => {
+        portfolioSection.style.display = 'block';
+      });
+    </script>
+    <!-- Backend Bundle JavaScript -->
+    <script src="{% static '/assets/js/libs.min.js' %}"></script>
+    <!-- widgetchart JavaScript -->
+    <script src="{% static '/assets/js/charts/widgetcharts.js' %}"></script>
+    <!-- fslightbox JavaScript -->
+    <script src="{% static '/assets/js/fslightbox.js' %}"></script>
+    <!-- app JavaScript -->
+    <script src="{% static '/assets/js/app.js' %}"></script>
+    <!-- apexchart JavaScript -->
+    <script src="{% static '/assets/js/charts/apexcharts.js' %}"></script>
+</body>
+
+</html>
