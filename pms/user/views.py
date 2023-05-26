@@ -53,7 +53,7 @@ class EuserRegisterView(CreateView):
         send_mail(
             'Welcome to Grownited',
             'Dear {},\n\nWelcome to My Website! We are thrilled to have you as a new User.\n\nBest regards,\nMy Website Team'.format(user.username),
-            'patelap871@gmail.com',
+            'YOUR EMAIL',
             [user.email],
             fail_silently=False,
         )
