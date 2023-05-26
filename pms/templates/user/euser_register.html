@@ -1,0 +1,165 @@
+{% load static %}
+<!doctype html>
+<html lang="en" >
+  <head>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>COINEX | Responsive Bootstrap 5 Admin Dashboard Template</title>
+      <!-- Favicon -->
+      <link  href="{% static 'assets/images/favicon.ico'  %}" rel="shortcut icon" />
+      <link  href="{% static 'assets/css/libs.min.css' %}" rel="stylesheet">
+      <link  href="{% static 'assets/css/coinex.css' %}" rel="stylesheet">  </head>
+  <body class="" data-bs-spy="scroll" data-bs-target="#elements-section" data-bs-offset="0" tabindex="0">
+    <!-- loader Start -->
+    <div id="loading">
+      <div class="loader simple-loader">
+          <div class="loader-body"></div>
+      </div>    
+    </div>
+    <!-- loader END -->
+      <!-- <div style="background-image: url('{% static 'assets/images/auth/01.png' %}')" >  -->
+      <div style="background-color:lightseagreen;" />
+         
+        <div class="wrapper">
+<section class="vh-100 bg-image">
+   <div class="container h-100">
+      <div class="row justify-content-center h-100 align-items-center">
+         <div class="col-md-6 mt-5">
+            <div class="card">
+               <div class="card-body">
+                  <div class="auth-form">
+                        <h2 class="text-center mb-4">Sign Up</h2>
+                        <form method="POST">
+                           {% csrf_token %}
+                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                           <div class="row">
+                              <div class="col-md-12 mb-4">
+                                  <div class="form-floating mb-3">
+                                        <input type="text" name="username" class="form-control" id="username" placeholder="username">
+                                        <label for="username">Username</label>
+                                  </div>
+                              </div>
+                              
+                           </div>
+                           <div class="row">
+                              
+                              <div class="col-md-6 mb-4">
+                                  <div class="form-floating mb-3">
+                                        <input type="text" name="first_name" class="form-control" id="firstName" placeholder="First Name">
+                                        <label for="firstName">First Name</label>
+                                    </div>
+                              </div>
+                              <div class="col-md-6 mb-4">
+                                 <div class="form-floating mb-3">
+                                        <input type="text" name="last_name" class="form-control" id="lastName" placeholder="Last Name">
+                                        <label for="lastName">Last Name</label>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="row">
+                              <div class="col-md-6 mb-4">
+                                  <div class="form-floating mb-3">
+                                        <input type="email" name="email" class="form-control" id="floatingInput" placeholder="email">
+                                        <label for="floatingInput">Email</label>
+                                    </div>
+                              </div>
+                              <div class="col-md-6 mb-4">
+                                 <div class="form-floating mb-3">
+                                       <input type="number" name="phone_no" class="form-control" id="phoneno" placeholder="phonenumber">
+                                       <label for="phoneno">Phone no</label>
+                                 </div>
+                              </div>
+                              
+                             
+
+                           </div>
+                           <div class="row">
+                              <div class="col-md-6 mb-4">
+                                  <div class="form-floating mb-2">
+                                        <input type="password" name="password1" class="form-control" id="password1" placeholder="Enter Password">
+                                        <label for="Enter Password">Password</label>
+                                    </div>
+                              </div>
+                              <div class="col-md-6 mb-4">
+                                  <div class="form-floating mb-2">
+                                        <input type="password" name="password2" class="form-control" id="password2" placeholder="Re-enter Password">
+                                        <label for="Re-enter Password">Confirm-password</label>
+                                    </div>
+                              </div>
+                           </div>
+                           <div class="row">
+                              <div class="col-md-6 mb-4">
+                                 <div class="form-floating mb-3">
+                                     <textarea name="address" class="form-control" id="address" placeholder="address" rows="2"></textarea>
+                                     <label for="address">Address</label>
+                                 </div>
+                               </div>
+ 
+ 
+                              <div class="col-md-6 mb-4">
+                                 <div class="form-floating mb-3">
+                                       <input type="number" name="annual_income" class="form-control" id="annual_income" placeholder="annual income">
+                                       <label for="annual_income">Annual Income</label>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="form-check d-flex justify-content-center  mb-2">
+                              <input type="checkbox" class="form-check-input" id="agree">
+                              <label class="ms-1 form-check-label" for="agree">I agree with the terms of
+                                 use</label>
+                           </div>
+                           <div class="text-center">
+                              <input type="submit" class="btn btn-primary" value="Sign Up"/>
+                           </div>
+                           <div class="text-center mt-3">
+                              <p>or sign in with others account?</p>
+                           </div>
+                           <div class="d-flex justify-content-center">
+                                 <ul class="list-group list-group-horizontal list-group-flush">
+                                    <li class="list-group-item border-0 bg-transparent">
+                                       <a href="#"><img src="{% static 'assets/images/brands/01.png' %}" class="img-fluid avatar avatar-30 avatar-rounded" alt="fb"></a>
+                                    </li>
+                                    <li class="list-group-item border-0 bg-transparent">
+                                       <a href="#"><img src="{% static 'assets/images/brands/02.png' %}" class="img-fluid avatar avatar-30 avatar-rounded" alt="gm"></a>
+                                    </li>
+                                    <li class="list-group-item border-0 bg-transparent">
+                                       <a href="#"><img src="{% static 'assets/images/brands/03.png' %}" class="img-fluid avatar avatar-30 avatar-rounded" alt="im"></a>
+                                    </li>
+                                    <li class="list-group-item border-0 bg-transparent">
+                                       <a href="#"><img src="{% static 'assets/images/brands/04.png' %}" class="img-fluid avatar avatar-30 avatar-rounded" alt="li"></a>
+                                    </li>
+                                 </ul>
+                              </div>
+                        </form>
+                        <div class="new-account mt-3 text-center">
+                           <p>Already have an Account <a class="text-primary" href="{% url 'login' %}">Sign in</a>
+                           </p>
+                        </div>
+                     </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+        </div>
+      </div>
+      
+    
+    <!-- Backend Bundle JavaScript -->
+<script src="{% static 'assets/js/libs.min.js' %}"></script>
+    
+<!-- widgetchart JavaScript -->
+<script src="{% static 'assets/js/charts/widgetcharts.js' %}"></script>
+
+<!-- fslightbox JavaScript -->
+<script src="{% static 'assets/js/fslightbox.js' %}"></script>
+
+<!-- app JavaScript -->
+<script src="{% static 'assets/js/app.js' %}"></script>
+
+
+<!-- apexchart JavaScript -->
+<script src="{% static 'assets/js/charts/apexcharts.js' %}"></script>
+  </body>
+</html>
